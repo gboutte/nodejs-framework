@@ -1,0 +1,5 @@
+class Route {
+
+}
+
+export { Route }
