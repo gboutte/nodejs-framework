@@ -14,7 +14,15 @@ class Server {
     }
     requestListener = (req: http.IncomingMessage, res: http.ServerResponse) => {
         let request = new Request(req);
-        this.router.handle(request, res);
+        let self = this;
+        var body = "";
+        req.on('data', function (chunk) {
+            body += chunk;
+        });
+        req.on('end', function () {
+            request.updateBody(body);
+            self.router.handle(request, res);
+        });
     }
 
     listen(port: number) {

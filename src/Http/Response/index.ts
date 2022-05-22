@@ -1,9 +1,16 @@
 import { Message } from "../Message";
 
 class Response extends Message {
-    constructor(body: string = '') {
+    private statusCode: number;
+
+
+    constructor(body: string = '', statusCode: number = 200) {
         super();
-        this.body = body
+        this.setBody(body);
+        this.statusCode = 200;
     }
+
+
+
 }
 export { Response }
